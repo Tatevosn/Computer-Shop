@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}"></head>
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+<main>
+    <div class="container mt-5">
+        <h1>Edit Product</h1>
+        <form th:action="@{/offers/edit/{id}(id=${computer.id})}" th:object="${computer}" method="post">
+            <div class="form-group">
+                <label for="brand">Brand</label>
+                <input type="text" id="brand" class="form-control" th:field="*{brand}" required />
+            </div>
+            <div class="form-group">
+                <label for="model">Model</label>
+                <input type="text" id="model" class="form-control" th:field="*{model}" required />
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" id="price" class="form-control" th:field="*{price}" required />
+            </div>
+            <div class="form-group">
+                <label for="processor">Processor</label>
+                <input type="text" id="processor" class="form-control" th:field="*{processor}" required />
+            </div>
+            <div class="form-group">
+                <label for="ram">RAM</label>
+                <input type="text" id="ram" class="form-control" th:field="*{ram}" required />
+            </div>
+            <div class="form-group">
+                <label for="storage">Storage</label>
+                <input type="text" id="storage" class="form-control" th:field="*{storage}" required />
+            </div>
+            <div class="form-group">
+                <label for="graphicCard">Graphic Card</label>
+                <input type="text" id="graphicCard" class="form-control" th:field="*{graphicCard}" required />
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+            <a th:href="@{/products}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</main>
+<script src="/js/jquery-3.5.1.slim.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>

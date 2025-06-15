@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}"></head>
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+<main>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Login</h3>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/login}" method="post" th:object="${loginDTO}">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" th:field="*{username}" required>
+                            <div th:if="${#fields.hasErrors('username')}" class="text-danger">
+                                <span th:errors="*{username}"></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" th:field="*{password}" required>
+                            <div th:if="${#fields.hasErrors('password')}" class="text-danger">
+                                <span th:errors="*{password}"></span>
+                            </div>
+                        </div>
+                        <div th:if="${validCredentials != null && !validCredentials}" class="alert alert-danger">
+                            Invalid username or password.
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                    <div class="mt-3 text-center">
+                        <p>Don't have an account? <a th:href="@{/register}">Register here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+<script src="/js/jquery-3.5.1.slim.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>

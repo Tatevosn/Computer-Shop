@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}"></head>
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+<main>
+    <div class="container mt-5">
+        <h1>Products</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th>Processor</th>
+                <th>RAM</th>
+                <th>Storage</th>
+                <th>Graphic Cards</th>
+                <th>
+                    <form th:action="@{/offers/delete-all}" method="post">
+                        <button type="submit" class="btn btn-danger">Delete All</button>
+                    </form>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="computer : ${computers}">
+                <td th:text="${computer.brand}"></td>
+                <td th:text="${computer.model}"></td>
+                <td th:text="${computer.price}"></td>
+                <td th:text="${computer.processor}"></td>
+                <td th:text="${computer.ram}"></td>
+                <td th:text="${computer.storage}"></td>
+                <td th:text="${computer.graphicCard}"></td>
+                <td>
+                    <form th:action="@{/offers/delete/{id}(id=${computer.id})}" method="post">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <a th:href="@{/offers/edit/{id}(id=${computer.id})}" class="btn btn-primary">Update</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<script src="/js/jquery-3.5.1.slim.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>
